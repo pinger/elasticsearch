@@ -1,0 +1,15 @@
+#!/bin/sh -
+
+FULL_RAM=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+HALF_RAM_KB=$((FULL_RAM / 221))
+HALF_RAM_KB1=$((HALF_RAM_KB * 100))
+HALF_RAM_KB2=$((HALF_RAM_KB1 / 1024))
+HALF_RAM=$HALF_RAM_KB2"m"
+
+mv /etc/default/elasticsearch /tmp/elasticsearch.default
+/bin/sed "s/SIZE=.*m/SIZE=$HALF_RAM/" /tmp/elasticsearch.default > /etc/default/elasticsearch
+rm /tmp/elasticsearch.default
+
+/sbin/swapoff --all
+
+exit 0

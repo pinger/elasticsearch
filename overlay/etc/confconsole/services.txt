@@ -1,0 +1,3 @@
+Elasticsearch: http://$ipaddr:9200
+ElasticHQ:     http://$ipaddr:9200/_plugin/HQ/
+SSH/SFTP:      root@$ipaddr (port 22)
