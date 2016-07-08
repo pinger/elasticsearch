@@ -1,9 +1,11 @@
 #!/bin/sh -ex
 
+apt-get update
+apt-get install -y apt-transport-https
+
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
 wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | apt-key add -
 
-apt-get install -y apt-transport-https
 apt-get update
 
 apt-get install -y oracle-java8-installer
