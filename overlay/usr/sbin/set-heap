@@ -13,3 +13,4 @@ rm /tmp/elasticsearch.default
 /sbin/swapoff --all
 
 exit 0
+

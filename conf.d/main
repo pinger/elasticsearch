@@ -3,12 +3,16 @@
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
 wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | apt-key add -
 
+apt-get install -y apt-transport-https
 apt-get update
 
 apt-get install -y oracle-java8-installer
 
 apt-get install -y elasticsearch
+
 chmod +x /etc/init.d/elasticsearch
+chmod +x /usr/sbin/set-heap
+
 update-rc.d elasticsearch defaults 95 10
 /bin/systemctl daemon-reload
 /bin/systemctl enable elasticsearch.service
@@ -20,4 +24,6 @@ echo "" >> /etc/security/limits.conf
 
 rm /etc/default/elasticsearch.dpkg-dist
 
-/usr/share/elasticsearch/bin/plugin -install royrusso/elasticsearch-HQ
+/usr/share/elasticsearch/bin/plugin install royrusso/elasticsearch-HQ
+/usr/share/elasticsearch/bin/plugin install lmenezes/elasticsearch-kopf/v2.1.1
+
